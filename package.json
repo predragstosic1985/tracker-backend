@@ -1,0 +1,22 @@
+{
+  "name": "tracker-backend",
+  "version": "1.0.0",
+  "description": "backend for tracker app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://predragstosic1985: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@github.com/predragstosic1985/tracker-backend.git"
+  },
+  "author": "Predrag Stosic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/predragstosic1985/tracker-backend/issues"
+  },
+  "homepage": "https://github.com/predragstosic1985/tracker-backend",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
