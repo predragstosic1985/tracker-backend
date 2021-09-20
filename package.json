@@ -4,7 +4,7 @@
   "description": "backend for tracker app",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "nodemon app"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/predragstosic1985/tracker-backend",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "firebase": "^9.0.2",
+    "firebase-admin": "^9.11.1",
+    "firebase-functions": "^3.15.7",
+    "nodemon": "^2.0.12"
   }
 }
