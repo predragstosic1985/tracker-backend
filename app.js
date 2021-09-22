@@ -11,7 +11,7 @@ admin.initializeApp({
   databaseURL: process.env.DATABASE_URL,
 });
 
-const trackerData = require("./controllers/trackerData");
+const trackerData = require("./controllers/trackerData.js");
 
 app.use(express.json());
 app.use(cors());
