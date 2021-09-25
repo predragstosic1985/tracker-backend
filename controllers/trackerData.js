@@ -23,7 +23,6 @@ router.get("/read", (req, res) => {
             lastName: doc.data().lastName,
             username: doc.data().username,
             password: doc.data().password,
-            gender: doc.data().gender,
             height: doc.data().height,
             aditionalData: doc.data().aditionalData,
             measurements: doc.data().measurements,
@@ -57,7 +56,6 @@ router.get("/read/:id", (req, res) => {
           lastName: doc.data().lastName,
           username: doc.data().username,
           password: doc.data().password,
-          gender: doc.data().gender,
           height: doc.data().height,
           aditionalData: doc.data().aditionalData,
           measurements: doc.data().measurements,
@@ -81,11 +79,10 @@ router.post("/create", urlencodedParser, async (req, res) => {
       lastName: req.body.lastName,
       username: req.body.username,
       password: req.body.password,
-      gender: req.body.gender,
       role: "user",
       measurements: req.body.measurements,
     });
-    console.log(req.body);
+
     res.status(200).json({ message: "saved successfully" });
   } catch (error) {
     console.log("something went wrong, please try again later");
