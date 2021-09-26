@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const trackerDataRoute = require("./trackerData.route");
+const trackerDataRoute = require("./tracker.route");
 
 // middleware
 // httpLogger

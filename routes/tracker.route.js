@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require("../controllers/trackerData");
+const controller = require("../controllers/tracker");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
 
