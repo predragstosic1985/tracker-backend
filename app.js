@@ -1,11 +1,12 @@
-const express = require("express");
+const port = process.env.PORT || 5000;
+const admin = require("firebase-admin");
+const serviceAccount = require("./permissions.json");
 
-const app = express();
-
-app.get("/", (req, res) => {
-  res.send("Hello world tracker app setup wihout port");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: process.env.DATABASE_URL,
 });
+const app = require("./routes");
 
-app.listen(5000, () => {
-  console.log("Server started with express.");
-});
+//  Listen on port 5000
+app.listen(port, () => console.info(`Listening on port ${port}`));
