@@ -1,16 +1,15 @@
-const router = require("express").Router();
+// const router = require("express").Router();
 const admin = require("firebase-admin");
-const bodyParser = require("body-parser");
-const urlencodedParser = bodyParser.urlencoded({ extended: true });
 const db = admin.firestore();
 const { v4: uuidv4 } = require("uuid");
 
 // read all
-router.get("/read", (req, res) => {
+exports.getUsers = (req, res, next) => {
   (async () => {
     try {
       const users = await db.collection("users");
       const data = await users.get();
+
       const usersArray = [];
       if (data.empty) {
         res.status(404).send("No record found");
@@ -27,26 +26,28 @@ router.get("/read", (req, res) => {
             aditionalData: doc.data().aditionalData,
             measurements: doc.data().measurements,
           };
+
           usersArray.push(user);
         });
+
         res.send(usersArray);
       }
     } catch (error) {
-      console.log(error);
-      return res.status(500).send(error);
+      next(error);
     }
   })();
-});
+};
 
 // read one
-router.get("/read/:id", (req, res) => {
+exports.getUser = (req, res, next) => {
   (async () => {
     try {
-      console.log(req.params.id, "req.params.id");
       const id = req.params.id;
       const user = await db.collection("users").doc(id);
-      const data = await user.get();
-      if (!data.exists) {
+
+      const doc = await user.get();
+
+      if (!doc.exists) {
         res.status(404).send("User with the given ID was not found");
       } else {
         const myNewObj = {
@@ -63,14 +64,13 @@ router.get("/read/:id", (req, res) => {
         res.send(myNewObj);
       }
     } catch (error) {
-      console.log(error);
-      return res.status(500).send(error);
+      next(error);
     }
   })();
-});
+};
 
 // post
-router.post("/create", urlencodedParser, async (req, res) => {
+exports.createUser = async (req, res, next) => {
   try {
     const usersDB = db.collection("users");
     await usersDB.add({
@@ -85,39 +85,45 @@ router.post("/create", urlencodedParser, async (req, res) => {
 
     res.status(200).json({ message: "saved successfully" });
   } catch (error) {
-    console.log("something went wrong, please try again later");
-    return res.status(500).send(error);
+    next(error);
   }
-});
+};
 
 // update
-router.put("/update/:id", (req, res) => {
+exports.updateUser = (req, res, next) => {
   (async () => {
     try {
       const id = req.params.id;
       const data = req.body;
       const user = await db.collection("users").doc(id);
-      await user.update(data);
-      res.send("Record updated successfuly");
+      const doc = await user.get();
+
+      if (!doc.exists) {
+        res.status(404).send("User with the given ID was not found");
+      } else {
+        await user.update(data);
+        res.send("Record updated successfuly");
+      }
     } catch (error) {
-      console.log(error);
-      return res.status(500).send(error);
+      next(error);
     }
   })();
-});
+};
 
 // delete
-router.delete("/delete/:id", (req, res) => {
+exports.deleteUser = (req, res, next) => {
   (async () => {
     try {
-      const document = db.collection("users").doc(req.params.id);
-      await document.delete();
-      return res.status(200).send();
+      const document = await db.collection("users").doc(req.params.id);
+
+      if (!document) {
+        res.status(404).send("User with the given ID was not found");
+      } else {
+        await document.delete();
+        return res.status(200).send("Record deleted successfuly");
+      }
     } catch (error) {
-      console.log(error);
-      return res.status(500).send(error);
+      next(error);
     }
   })();
-});
-
-module.exports = router;
+};

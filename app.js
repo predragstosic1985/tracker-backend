@@ -1,27 +1,14 @@
-// Imports
-const express = require("express");
-const app = express();
 const port = process.env.PORT || 5000;
 const admin = require("firebase-admin");
 const serviceAccount = require("./permissions.json");
-const cors = require("cors");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: process.env.DATABASE_URL,
 });
+const app = require("./routes");
 
-const trackerData = require("./controllers/trackerData.js");
-
-app.use(express.json());
-app.use(cors());
-app.use(
-  express.json({
-    type: ["application/json", "text/plain"],
-  })
-);
-
-app.use("/api/tracker", trackerData);
+console.log("PORT", process.env.PORT);
 
 //  Listen on port 5000
 app.listen(port, () => console.info(`Listening on port ${port}`));
