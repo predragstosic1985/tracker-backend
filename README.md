@@ -48,3 +48,7 @@ path src\logs\app.log
 ## Technical documentation
 
 For more information about project structure please read technical documentation (not part of the repository).
+
+## CRUD
+
+For postman testing paths, objects, tokens and all other information are part of technical documentation.
