@@ -27,6 +27,7 @@ describe("Initial test", () => {
     firstName: "fakeFirstName",
     lastName: "fakeLastName",
     username: "fakeUsername",
+    email: "fakeEmail",
     password: "fakePassword",
     role: "userRole",
     measurements: "fakeMeasurements",
@@ -53,6 +54,7 @@ describe("Initial test", () => {
       firstName: "John123",
       lastName: "Doe",
       username: "user",
+      email: "user@auth.com",
       password: "user",
       measurements: [
         {
@@ -107,6 +109,7 @@ describe("Initial test", () => {
       firstName: "John123",
       lastName: "Doe",
       username: "user",
+      email: "user@auth.com",
       password: "user",
       measurements: [
         {
@@ -190,6 +193,7 @@ describe("Initial test", () => {
       firstName: "John123",
       lastName: "Doe",
       username: "user",
+      email: "user@auth.com",
       password: "user",
       measurements: [
         {

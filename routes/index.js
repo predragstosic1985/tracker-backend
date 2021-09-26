@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const trackerDataRoute = require("./tracker.route");
+const trackerRoute = require("./tracker.route");
+const loginRoute = require("./login.route");
 
 // middleware
 // httpLogger
@@ -22,7 +23,8 @@ app.use(
   })
 );
 app.use(httpLogger);
-app.use("/api/tracker", trackerDataRoute);
+app.use("/api/tracker", trackerRoute);
+app.use("/api/login", loginRoute);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to firebase." });

@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/predragstosic1985/tracker-backend",
   "dependencies": {
+    "axios": "^0.21.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "firebase": "^9.0.2",
