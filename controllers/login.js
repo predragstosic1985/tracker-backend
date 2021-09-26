@@ -5,6 +5,7 @@ const secretKey = require("../firebaseConfig.json");
 exports.loginUser = async (req, res, next) => {
   const myKey = secretKey.apiKey;
   try {
+    // using Firebase authentication
     const response = await axios.post(
       `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${myKey}`,
       {

@@ -47,7 +47,7 @@ describe("Initial test", () => {
         expect(response.text).toEqual("No record found");
       });
   });
-  it("should get users ", async () => {
+  it("should get users", async () => {
     const mockData = {
       docID: "sLtdwfGl8eLoB2VSXbJE",
       id: "b005f030-18fa-4223-9bdd-1dc8808b2a39",
